@@ -124,3 +124,23 @@ img{
     text-align:center;
     box-shadow: 2px 2px 3px #999;  
 }
+
+.footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 2rem 2rem 2rem 2rem;
+    margin-top: 2rem;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+.footer-title {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.footer p:nth-child(even) {
+    padding-left: 1rem;
+}
