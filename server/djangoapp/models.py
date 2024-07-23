@@ -1,7 +1,6 @@
 # Uncomment the following imports before adding the Model code
 
 from django.db import models
-# 
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 
@@ -32,6 +31,8 @@ class CarModel(models.Model):
     
     def __str__(self):
         return self.name
+
+
 # - Many-To-One relationship to Car Make model (One Car Make has many
 # Car Models, using ForeignKey field)
 # - Name
