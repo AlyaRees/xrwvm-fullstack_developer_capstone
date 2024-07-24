@@ -37,15 +37,15 @@ def login_user(request):
 
 
 # Create a `logout_request` view to handle sign out request
-def logout_request(request): 
+def logout_request(request):
     logout(request)
-    data = {"userName":""}
+    data = {"userName": ""}
     return JsonResponse(data)
 
 
 # Create a `registration` view to handle sign up request
 @csrf_exempt
-def registration(request): 
+def registration(request):
 
     data = json.loads(request.body)
     username = data['userName']
@@ -66,14 +66,14 @@ def registration(request):
     if not username_exist:
         # Create user in auth_user table
         user = User.objects.create_user(username=username,
-                    first_name=first_name,
-                    last_name=last_name, password=password, email=email)
+                                        first_name=first_name,
+                                        last_name=last_name, password=password, email=email)
         # Login the user and redirect to list page
         login(request, user)
-        data = {"userName": username,"status": "Authenticated"}
+        data = {"userName": username, "status": "Authenticated"}
         return JsonResponse(data)
     else:
-        data = {"userName": username,"error": "Already Registered"}
+        data = {"userName": username, "error": "Already Registered"}
         return JsonResponse(data)
 
 
@@ -113,11 +113,11 @@ def get_dealer_reviews(request, dealer_id):
     if (dealer_id):
         endpoint = "/fetchReviews/dealer/"+str(dealer_id)
         reviews = get_request(endpoint)
-        for review_detail in reviews: 
+        for review_detail in reviews:
             response = analyze_review_sentiments(review_detail['review'])
             print(response)
             review_detail['sentiment'] = response['sentiment']
-        return JsonResponse({"status": 200,"reviews": reviews})
+        return JsonResponse({"status": 200, "reviews": reviews})
     else:
         return JsonResponse({"status": 400, "message": "Bad Request"})
 
@@ -142,8 +142,8 @@ def add_review(request):
         try:
             return JsonResponse({"status": 200})
         except Exception as e:
-            return JsonResponse({f"status": 401,
-                                 "message": "Error in posting review {e}"})
+            return JsonResponse({"status": 401,
+                                 f"message": "Error in posting review {e}"})
         finally:
             print("add_review request successful!")
     else:
